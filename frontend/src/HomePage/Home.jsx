@@ -11,11 +11,11 @@ import Instructor from "../assets/Images/Instructor.png"
 function Home() {
   return (
     <>
-    <div className='  justify-center w-screen'>
+    <div className='  justify-center w-screen flex flex-col items-center'>
       <div className='w-11/12  flex flex-col items-center '>
-        <h1 className='text-4xl font-semibold text-center mt-5'>Learning Now Become 
+        <h1 className='text-4xl font-semibold text-center mt-8'>Learning Now Become 
           <span className='text-blue-400 ms-3'>More Easier </span></h1>
-        <p className='text-center text-xl  mt-3'>With our online coding courses, you can learn at your own pace, from anywhere in the world,
+        <p className='text-center text-lg   mt-3'>With our online coding courses, you can learn at your own pace, from anywhere in the world,
            and get access to a wealth of resources, including hands-on projects, quizzes, and personalized 
            feedback from instructors.</p>
 
@@ -45,7 +45,7 @@ function Home() {
       <div className='text-center'>
       <h1 className='text-4xl font-bold mt-6 text-center text-black'>Unlock Your coding potential  <br />
       <span className='text-blue-400'>with our online courses</span></h1>
-      <p className='text-center mt-3 text-md text-gray-500 transition-transform duration-500 text-black
+      <p className='text-center mt-3 text-md transition-transform duration-500 text-gray-500
           hover:scale-102'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, quas maxime?
          Facere voluptas sint quidem mollitia quia sed tempora reiciendis hic a facilis in 
          dignissimos maxime explicabo porro provident repellat officia,
@@ -64,12 +64,12 @@ function Home() {
   <h1 className='font-semibold text-xl text-blue-400'>
     Flexible Schedule
   </h1>
-  <p className='text-lg text-gray-500 text-black'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In,
+  <p className='text-lg text-gray-500 '>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In,
      quaerat? Eum natus voluptates officiis reprehenderit, omnis libero quam vitae nihil
       error ea velit earum sequi a distinctio quos recusandae. Quibusdam?</p>
 
     <h1 className='font-semibold text-xl mt-8 text-blue-400'>Pocket Friendly</h1>
-    <p className='text-lg text-gray-500 text-black'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    <p className='text-lg text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
       Esse maiores doloremque quae natus aspernatur exercitationem modi dolorem, perferendis commodi
        suscipit ducimus alias consequuntur mollitia, odio dolor nesciunt nobis, repellat numquam?</p>
 </div>
