@@ -7,6 +7,8 @@ import App from './App.jsx';
 import Home from './HomePage/Home.jsx';
 import Signup from './Authentication/signup.jsx'
 import Aboutus from './HomePage/Aboutus.jsx'
+import Login from './Authentication/Login.jsx'
+import VerifyOtp from './Authentication/VerifyOtp.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -25,7 +27,15 @@ const AppRouter= createBrowserRouter([
     {
       path:"AboutUs",
       element:<Aboutus/>
-    }
+    },
+{
+  path:"login",
+  element:<Login/>
+},
+{
+  path:"verify-otp",
+  element:<VerifyOtp/>
+}
   ]
 }
 ])

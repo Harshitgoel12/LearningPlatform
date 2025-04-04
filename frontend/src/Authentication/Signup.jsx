@@ -2,8 +2,10 @@ import React ,{useEffect, useState} from 'react'
 import SingupImg from "../assets/Images/signup.webp"
 import frame from "../assets/Images/frame.png"
 import { IoIosEye, IoIosEyeOff } from "react-icons/io"; 
+import { Navigate, useNavigate } from 'react-router-dom';
 function Signup() {
     const [accountType,setAccountType]=useState("Student");
+    const navigate= useNavigate();
     const [user,setUser]=useState({
           firstName:"",
           lastName:"",
@@ -32,6 +34,7 @@ function Signup() {
         ...user,
         accountType
     }
+    navigate("/verify-otp")
    setUser({
     firstName:"",
     lastName:"",
