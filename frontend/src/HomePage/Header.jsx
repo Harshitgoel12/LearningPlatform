@@ -13,7 +13,7 @@ function Header() {
    <Link to={"/"}> <li>Home</li></Link>
     <Link ><li>Catalog</li></Link>
     <Link to={"/AboutUs"}><li>About Us</li></Link>
-    <Link><li>Contact Us</li></Link>
+    <Link to={"/contactUs"}> <li>Contact Us</li></Link>
     
   </ul>
 

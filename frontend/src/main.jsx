@@ -9,6 +9,7 @@ import Signup from './Authentication/signup.jsx'
 import Aboutus from './HomePage/Aboutus.jsx'
 import Login from './Authentication/Login.jsx'
 import VerifyOtp from './Authentication/VerifyOtp.jsx'
+import ContectUs from './HomePage/ContectUs.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const AppRouter= createBrowserRouter([
 {
   path:"verify-otp",
   element:<VerifyOtp/>
+},
+{
+  path:"contactUs",
+  element : <ContectUs/>
 }
   ]
 }
