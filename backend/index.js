@@ -1,8 +1,5 @@
-const express=require("express");
-const app=express();
+const app=require("./Utils/index");
 const connection = require("./config/MongodbConn");
-console.log("yha tk to shi chal rha hai")
-
 
 
 const port=8080;

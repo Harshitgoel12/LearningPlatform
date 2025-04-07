@@ -20,11 +20,12 @@ const signupSchema = new mongoose.Schema({
     accountType:{
         type:String,
         required:true,
-    }
+    },
+   
 
 })
 
-const user= mongoose.model("User","signupSchema");
+const user= mongoose.model("User",signupSchema);
 
 module.exports=user;
 

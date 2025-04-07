@@ -3,9 +3,15 @@ import SingupImg from "../assets/Images/signup.webp"
 import frame from "../assets/Images/frame.png"
 import { IoIosEye, IoIosEyeOff } from "react-icons/io"; 
 import { Navigate, useNavigate } from 'react-router-dom';
+import {setToken,SignupData,setLoading} from "../slices/authslice"
+import { useDispatch,useSelector } from 'react-redux';
+import {sendOtp} from "../services/sendOtp"
 function Signup() {
     const [accountType,setAccountType]=useState("Student");
     const navigate= useNavigate();
+    const dispatch= useDispatch();
+    const loading= useSelector((state)=>state.auth.loading);
+
     const [user,setUser]=useState({
           firstName:"",
           lastName:"",
@@ -27,6 +33,7 @@ function Signup() {
     }
 
 
+
   const handleSubmit= (e)=>{
     e.preventDefault();
     console.log("yha tk to aa gye hm")
@@ -34,7 +41,15 @@ function Signup() {
         ...user,
         accountType
     }
-    navigate("/verify-otp")
+ 
+    dispatch(SignupData(userdetail));
+
+    // send otp to the email address
+    console.log(user.email);
+    dispatch(sendOtp(user.email,navigate))
+
+
+   
    setUser({
     firstName:"",
     lastName:"",

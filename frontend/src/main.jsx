@@ -47,11 +47,13 @@ const AppRouter= createBrowserRouter([
 }
 ])
 createRoot(document.getElementById('root')).render(
+  <Provider store={store}>
   <RouterProvider router={AppRouter}>
-    <Provider store={store}>
+   
   <StrictMode>
     <App />
   </StrictMode>
-  </Provider>
+
   </RouterProvider>
+  </Provider>
 )
