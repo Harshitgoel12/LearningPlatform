@@ -10,6 +10,8 @@ import Aboutus from './HomePage/Aboutus.jsx'
 import Login from './Authentication/Login.jsx'
 import VerifyOtp from './Authentication/VerifyOtp.jsx'
 import ContectUs from './HomePage/ContectUs.jsx'
+import store from "./store.js";
+import {Provider} from "react-redux"
 
 const AppRouter= createBrowserRouter([
   {
@@ -46,8 +48,10 @@ const AppRouter= createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   <RouterProvider router={AppRouter}>
+    <Provider store={store}>
   <StrictMode>
     <App />
   </StrictMode>
+  </Provider>
   </RouterProvider>
 )
