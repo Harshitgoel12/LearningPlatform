@@ -10,6 +10,9 @@ function Login() {
         <h1 className="text-3xl lg:text-4xl font-bold text-center lg:text-left">
           Welcome Back
         </h1>
+
+   
+      
         <p className="text-gray-400 text-lg text-center lg:text-left mt-2 max-w-md">
           Build skills for today, tomorrow, and beyond.{" "}
           <span className="text-blue-400">Education to future-proof your career.</span>

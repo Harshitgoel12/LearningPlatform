@@ -43,9 +43,9 @@ function Signup() {
     }
  
     dispatch(SignupData(userdetail));
-
+  
     // send otp to the email address
-    console.log(user.email);
+   
     dispatch(sendOtp(user.email,navigate))
 
 

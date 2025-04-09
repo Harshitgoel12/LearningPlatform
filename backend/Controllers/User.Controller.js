@@ -6,19 +6,24 @@ const jwt =require("jsonwebtoken");
 
 const singupuser= async(req,res)=>{
     try {
-        const {firstName,lastName,email,password,confirmpassowrd, accountType,otp}=req.body;
-        if([firstName,lastName,email,passowrd,confirmpassowrd, accountType,otp].some((ele,idx)=>ele!="")){
-         return res.status(401).json({
-            success:false,
-            message:"Please fill all the details"
-         })
-        }
-           const result=await user.findOne((email));
+        
+        const {firstName,lastName,email,password,confirmpassword, accountType,otp}=req.body;
+        
+        if ([firstName, lastName, email, password, confirmpassword, accountType, otp].some((field) => !field)) {
+            return res.status(400).json({
+              success: false,
+              message: "Please fill all the details"
+            });
+          }
+          
+       console.log(password,confirmpassword);
+           const result=await user.findOne({email});
            if(result){
-            return res.status(401).josn({success:false,messgage:"User is already exist"});
+            return res.status(401).json({success:false,messgage:"User is already exist"});
            }
-       
-           if(password!=confirmpassowrd){
+          
+        
+           if(password!==confirmpassword){
             return res.status(401).json({success:false,message:"Password and confirm password does not match"})
            }
 
@@ -30,17 +35,17 @@ const singupuser= async(req,res)=>{
                 return res.status(400).json({success:false,message:"Invalid Otp"});
              }
             
-               password=await bcrypt.hash(password,10);
+               const pass=await bcrypt.hash(password,10);
 
            const data=await user.create({
-            firstName,lastName,email,password,accountType
+            firstName,lastName,email,password:pass,accountType
            })
            if(data){
             res.status(200).json({success:true,message:"user is created successfully"})
            }
 
     } catch (error) {
-        console.log("something went wrong while registring the user");
+        console.log("something went wrong while registring the user",error.message);
         return res.status(500).json({
             success:false,
             message:"something went wrong while registering the user "+ error.message,
@@ -104,8 +109,8 @@ console.log(req.body);
        }
       
        const otp=Math.floor(100000 + Math.random() * 900000);
-    //    const resu=await Otp.deleteMany({email:email});
-    //    console.log(resu);
+       const resu=await Otp.deleteMany({email:email});
+       console.log(resu);
 
        const result =await Otp.create({
         email,otp
