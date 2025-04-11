@@ -5,7 +5,8 @@ const router=express.Router();
 
 
 router.route("/send-otp").post(controller.sendOTP);
-router.route("/signup").post(controller.singupuser)
+router.route("/signup").post(controller.singupuser);
+router.route("/login").post(controller.loginUser);
 
 module.exports= router;
 

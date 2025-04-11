@@ -62,7 +62,7 @@ const loginUser= async(req,res)=>{
         if(!email||!password){
             return res.status(401).json({success:false,message:"Please fill all the details"});
         }
-        const data=await user.findOne(email);
+        const data=await user.findOne({email});
         if(!data){
             return res.status(401).json({success:false,message:"User is not registered"});
         }
@@ -87,7 +87,7 @@ const loginUser= async(req,res)=>{
             sameSite: "lax" 
           });
 
-          res.status(200).json({success:true,message:"User login successfully",payload});
+          res.status(200).json({success:true,message:"User login successfully",data,token});
 
         
        

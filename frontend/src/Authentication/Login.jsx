@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import LoginImg from "../assets/Images/login.webp";
 import frame from "../assets/Images/frame.png";
+import  axios from "axios";
+import { setToken } from "../slices/authslice";
+import { useDispatch } from "react-redux";
+import { userData } from "../slices/Profileslice";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+
+  const dispatch= useDispatch();
+  const navigate=useNavigate();
   const [userdata,setUserData]=useState({
     email:"",
     password:"",
@@ -15,12 +23,40 @@ function Login() {
       [name]:value
 
     }))
-    console.log(userdata);
+
   }
 
-  function handlesubmit(e){
+   async function handlesubmit(e){
     e.preventDefault();
-    console.log(userdata);
+    try {
+
+        const response=await axios.post("http://localhost:8080/api/v1/login",userdata,{withCredentials:true});
+        console.log("response is " , response.data.data);
+        if(!response.data.success){
+          throw new Error(response.data.message);
+        }
+
+        //store token on the localstore of the user 
+       localStorage.setItem("token",JSON.stringify(response.data.token));
+       dispatch(setToken(response.data.token));
+
+       const image=response.data.data.image=="NA"?
+       `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.data.firstName} ${response.data.data.lastName}`:response.data.data.image;
+
+   const ProfileData={
+    ...response.data.data,
+    image
+   }
+   console.log("profile",ProfileData);
+   dispatch(userData(ProfileData));
+   localStorage.setItem("user",JSON.stringify(ProfileData));
+     navigate("/")
+   
+        //create a slice where you going to store the profile
+        // 
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   return (

@@ -21,6 +21,28 @@ const signupSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+
+    
+    image:{
+        type:String,
+        default:'NA'
+    },
+    gender:{
+        type:String,
+        default:'NA'
+    },
+    contact:{
+       type:String,
+       default:'NA'
+    },
+    About:{
+        type:String,
+        default:'NA'
+    },
+    DOB:{
+        type:String,
+        default:Date.now()
+    }
    
 
 })
