@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginImg from "../assets/Images/login.webp";
 import frame from "../assets/Images/frame.png";
 
 function Login() {
+  const [userdata,setUserData]=useState({
+    email:"",
+    password:"",
+  });
+  
+  function handlechange(e){
+    const { name, value } = e.target;
+    setUserData((prev)=>({
+      ...prev,
+      [name]:value
+
+    }))
+    console.log(userdata);
+  }
+
+  function handlesubmit(e){
+    e.preventDefault();
+    console.log(userdata);
+  }
+
   return (
-    <div className="bg-[#000814] min-h-screen text-white flex flex-col-reverse lg:flex-row  ">
+    <form onSubmit={handlesubmit} className="bg-[#000814] min-h-screen text-white flex flex-col-reverse lg:flex-row  ">
       {/* Left Section */}
       <div className="lg:w-1/2 w-full flex  lg:mt-32 flex-col items-center  px-6 lg:px-12 py-8 lg:py-0">
         <h1 className="text-3xl lg:text-4xl font-bold text-center lg:text-left">
@@ -25,6 +45,9 @@ function Login() {
           <input
             type="email"
             id="email"
+            name="email"
+            value={userdata.email}
+            onChange={handlechange}
             className="py-3 bg-[#161D29] outline-none shadow-md px-3 rounded-md"
             placeholder="Enter Your Email Id"
           />
@@ -36,7 +59,10 @@ function Login() {
           </label>
           <input
             type="password"
+            name="password"
             id="password"
+            value={userdata.password}
+            onChange={handlechange}
             className="py-3 bg-[#161D29] outline-none shadow-md px-3 rounded-md"
             placeholder="Enter Your Password"
           />
@@ -44,6 +70,7 @@ function Login() {
 
         <button
           type="submit"
+          
           className="w-full max-w-md bg-yellow-400 text-black px-4 py-3 rounded-lg mt-6"
         >
           Create Your Account
@@ -59,7 +86,7 @@ function Login() {
           className=" h-[260px] sm:h-[330px] lg:h-[390px] max-w-sm lg:max-w-md absolute lg:top-0 top-10"
         />
       </div>
-    </div>
+    </form>
   );
 }
 
