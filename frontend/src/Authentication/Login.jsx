@@ -50,7 +50,7 @@ function Login() {
    console.log("profile",ProfileData);
    dispatch(userData(ProfileData));
    localStorage.setItem("user",JSON.stringify(ProfileData));
-     navigate("/")
+     navigate("/dashboard/my-profile")
    
         //create a slice where you going to store the profile
         // 

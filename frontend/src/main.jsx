@@ -12,6 +12,7 @@ import VerifyOtp from './Authentication/VerifyOtp.jsx'
 import ContectUs from './HomePage/ContectUs.jsx'
 import store from "./store.js";
 import {Provider} from "react-redux"
+import Myprofile from './Profile/Myprofile.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const AppRouter= createBrowserRouter([
 {
   path:"contactUs",
   element : <ContectUs/>
+},
+{
+  path:"dashboard/my-profile",
+  element:<Myprofile/>
 }
   ]
 }
