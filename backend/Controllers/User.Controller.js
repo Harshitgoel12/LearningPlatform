@@ -3,6 +3,8 @@ const bcrypt=require("bcrypt");
 const Otp=require("../Models/Otp.Models")
 const sendMail =require("../Utils/SendMail")
 const jwt =require("jsonwebtoken");
+const cloudinary=require("cloudinary").v2;
+
 
 const singupuser= async(req,res)=>{
     try {
@@ -126,9 +128,42 @@ console.log(req.body);
 }
 
 
+
+    cloudinary.config({
+        cloud_name:"depx8sahm",
+        api_key: "514326572457513",
+        api_secret:"viUoj3t1X0bl-Lc5fi9UQvxLyM8"
+    });
+
+
+const updateProfile= async(req,res)=>{
+    try {
+        const {firstName,lastName,contact,DOB,gender,About}=req.body;
+        const image=req.file;
+        let result;
+        if(image){
+        result=await cloudinary.uploader.upload(image.path)
+        }
+         const id=req.userInfo.id;
+      let data;
+          data=await user.findByIdAndUpdate(id,{$set:{firstName,lastName,contact,DOB,gender,About}},{new:true});
+         if(result){
+             data=await user.findByIdAndUpdate(id,{$set:{image:result.secure_url}})
+         }
+         return res.status(200).json({message:"profile updated successfully",success:true,data})
+
+
+    } catch (error) {
+        console.log("something went wrong while editing the profile of the user", error.message);
+        return res.status(500).json({success:false,message:"Internal server error"})
+    }
+}
+
+
 module.exports ={
     singupuser,
     loginUser,
-    sendOTP
+    sendOTP,
+    updateProfile
 
 }

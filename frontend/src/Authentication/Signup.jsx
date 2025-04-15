@@ -36,7 +36,6 @@ function Signup() {
 
   const handleSubmit= (e)=>{
     e.preventDefault();
-    console.log("yha tk to aa gye hm")
     const userdetail={
         ...user,
         accountType

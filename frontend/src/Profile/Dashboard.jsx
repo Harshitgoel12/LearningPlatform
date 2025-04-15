@@ -19,7 +19,7 @@ function Dashboard() {
   userdata.accountType === "Student"
     ? dashboardlinks.map((ele, idx) => {
         if (ele.type === "Student"||ele.type=="both") {
-          console.log(ele); // log outside JSX
+         
           return <Sidebar key={idx} element={ele} />;
         } else {
           return null;

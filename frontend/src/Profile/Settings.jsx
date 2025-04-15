@@ -3,23 +3,53 @@ import {userData} from "../slices/Profileslice"
 import { useDispatch, useSelector } from 'react-redux'
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Settings() {
     const dispatch=useDispatch();
   
     const userdata= useSelector((state)=>state.Profile.user);
-    const [preview, setPreview] = useState(null);
+    const [preview, setPreview] = useState(userdata.image);
+    const [Image,setImage]=useState(userdata.image);
     const [User,setUser]=useState(userdata);
 
     const handlechange = (e) => {
         const file = e.target?.files?.[0];
         if (file) {
+            setImage(file)
           setPreview(URL.createObjectURL(file));
         }
         else{
             setUser((prev)=>({...prev,[e.target.name]:e.target.value}))
         }
       };
+
+      const handleSubmit =async()=>{
+      
+   try {
+       
+    const formData= new FormData();
+    formData.append("firstName",User.firstName);
+    formData.append("lastName",User.lastName);
+    formData.append("contact",User.contact);
+    formData.append("DOB",User.DOB);
+    formData.append("gender",User.gender);
+    formData.append("About",User.About);
+    formData.append("image",Image)
+     
+    const response =await axios.put("http://localhost:8080/api/v1/Update-profile",formData,{
+        withCredentials:true,
+        headers: {
+            "Content-Type": "multipart/form-data" 
+        }
+    },
+  )
+    console.log(response)
+    dispatch(userData(response.data.data))
+   } catch (error) {
+    console.log("something went wrong while updating the profile of the user ");
+   }
+      }
       
   return (
     <div className='w-screen'>
@@ -48,7 +78,7 @@ function Settings() {
      </button>
   </div>
 
-                <button className='bg-yellow-400 px-4 py-2 rounded-lg font-semibold text-black' >Upload</button>
+                <button className='bg-yellow-400 px-4 py-2 rounded-lg font-semibold text-black' onClick={handleSubmit} >Upload</button>
             </div>
         </div>
 
@@ -93,7 +123,7 @@ function Settings() {
 
          
          <div className='flex justify-end w-11/12 mt-8 '>
-            <button className='text-black bg-yellow-300 px-4 py-2 font-semibold rounded-lg  me-4'>Save</button>
+            <button className='text-black bg-yellow-300 px-4 py-2 font-semibold rounded-lg  me-4' onClick={handleSubmit}>Save</button>
          </div>
 
 
@@ -114,7 +144,7 @@ function Settings() {
 
 
          <div className='flex justify-end w-11/12 mt-4'>
-            <button className='text-black bg-yellow-400 px-4 py-2 font-semibold rounded-lg  me-4'>Save</button>
+            <button className='text-black bg-yellow-400 px-4 py-2 font-semibold rounded-lg  me-4' onClick={handleSubmit}>Save</button>
          </div>
 
 

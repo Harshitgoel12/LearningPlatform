@@ -38,7 +38,7 @@ function Myprofile() {
                  <div className='flex '>
                     <div >
                         <p className='text-white font-bold text-xl'>About</p>
-                        <p className='mt-12 text-gray-600 '>Write Something about Yourself</p>
+                        <p className='mt-12 text-gray-600 '>{userdata.About=="NA"?"Write Something about Yourself":userdata.About}</p>
                     </div>
                     <div className='mt-3 ms-4'>
                         
