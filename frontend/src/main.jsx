@@ -13,6 +13,8 @@ import ContectUs from './HomePage/ContectUs.jsx'
 import store from "./store.js";
 import {Provider} from "react-redux"
 import Myprofile from './Profile/Myprofile.jsx'
+import Dashboard from './Profile/Dashboard.jsx'
+import Settings from './Profile/Settings.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -45,8 +47,18 @@ const AppRouter= createBrowserRouter([
   element : <ContectUs/>
 },
 {
-  path:"dashboard/my-profile",
-  element:<Myprofile/>
+path:"dashboard",
+element: <Dashboard/>,
+children:[
+  {
+    path:"my-profile",
+    element:<Myprofile/>
+  },
+  {
+    path:"settings",
+    element:<Settings/>
+  }
+]
 }
   ]
 }
