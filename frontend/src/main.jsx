@@ -15,6 +15,8 @@ import {Provider} from "react-redux"
 import Myprofile from './Profile/Myprofile.jsx'
 import Dashboard from './Profile/Dashboard.jsx'
 import Settings from './Profile/Settings.jsx'
+import AddCourseFirstPage from './Add-course/AddCourseFirstPage.jsx'
+import AddVideoLecture from './Add-course/AddVideoLecture.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -57,6 +59,14 @@ children:[
   {
     path:"settings",
     element:<Settings/>
+  },
+  {
+    path:"add-course",
+    element:<AddCourseFirstPage/>
+  },
+  {
+    path:"create-section",
+    element:<AddVideoLecture/>
   }
 ]
 }

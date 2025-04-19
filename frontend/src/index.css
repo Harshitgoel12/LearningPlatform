@@ -4,3 +4,35 @@
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
 }
+
+@layer utilities {
+    .no-spinner::-webkit-inner-spin-button,
+    .no-spinner::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  
+    .no-spinner {
+      -moz-appearance: textfield;
+    }
+  }
+
+  .ReactTags__tags {
+    @apply w-11/12 flex flex-wrap gap-2 p-2 border focus:border-yellow-200 rounded bg-gray-800;
+  }
+  
+  .ReactTags__tag {
+    @apply inline-flex items-center bg-yellow-600 text-white px-3 py-1 rounded-full text-sm;
+  }
+  
+  .ReactTags__remove {
+    @apply ml-2 text-sm font-bold cursor-pointer hover:text-red-200;
+  }
+  
+  .ReactTags__tagInput {
+    @apply flex-1;
+  }
+  
+  .ReactTags__tagInputField {
+    @apply outline-none p-2 text-white  bg-transparent text-sm;
+  }

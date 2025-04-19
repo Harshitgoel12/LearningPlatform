@@ -54,11 +54,11 @@ function ContectUs() {
 
           {/*  Right Part */}
           
-        <div className='  w-11/12  lg:w-2/3 min-h-screen flex lg:justify-start justify-center lg:mt-16 mt-10 lg:static 
+        <div className=' sm:w-screen md:w-11/12  lg:w-2/3 min-h-screen flex lg:justify-start justify-center lg:mt-16 mt-10 lg:static 
         relative -top-40 '>
 
  
-           <div className='border-2 w-11/12 lg:ms-0 ms-12 border-gray-500 rounded-lg '>
+           <div className='border-2 w-11/12 lg:ms-0 md:ms-12 border-gray-500 rounded-lg '>
            <div className=' w-full'>
            <div className='w-3/4  mt-12 ms-8'>
                <h1 className='text-white text-4xl font-bold'>Got a Idea? We've got the skills. Let's team up</h1>
@@ -69,7 +69,7 @@ function ContectUs() {
 
 
 
-<div className='text-white mt-5 w-full  '>
+<div className='text-white mt-5 w-full'>
                <div className='flex w-full px-12 gap-4  justify-center mt-3'>
         <div className='flex flex-col w-full mb-4'>
             <label htmlFor="firstname" className='mb-2'>First Name <span className='text-red-500'>*</span></label> 
@@ -128,7 +128,7 @@ function ContectUs() {
     <div className='flex flex-col  px-12 mt-2 w-full   ' id='textfield'>
            
            <textarea type="text" id='lastName' 
-            name='lastName' className=' bg-gray-800 shadow-2xl rounded-lg px-4 py-4 text-md' rows={6}  placeholder='Enter Your message here.'>
+            name='lastName' className=' bg-gray-800 shadow-2xl rounded-lg px-4 py-4 text-md' rows={6} placeholder='Enter Your message here.'>
                 </textarea>
        </div>
 
