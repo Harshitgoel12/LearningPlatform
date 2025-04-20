@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RxDropdownMenu } from "react-icons/rx";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { allSection } from '../slices/CourseSlice';
+import { addCourseDetails, allSection } from '../slices/CourseSlice';
+import axios from 'axios';
+import {deleteSectionHandler} from "../services/CourseHandler"
 
 const NestedSection = () => {
-  const selector = useSelector((state) => state.Course.allSection);
+  const selector = useSelector((state) => state.Course.course);
+  const section =selector.Sections;
   const dispatch = useDispatch();
   const [openSections, setOpenSections] = useState({});
 
@@ -17,14 +20,37 @@ const NestedSection = () => {
     }));
   };
 
-  const deleteSection = (index) => {
-    const updatedSections = selector.filter((_, i) => i !== index); // Correct way to remove item from array
-    dispatch(allSection(updatedSections));
-  };
+//   const deleteSection=async (id)=>{
+//    try {
+//     const courseId=selector._id;
+//   const resp=await deleteSectionHandler(id,courseId);
+//   dispatch(addCourseDetails(resp));
+//    } catch (error) {
+//     console.log("something went wrong");
+//    }
 
+//   }
+
+const deleteSection=async (id)=>{
+    try {
+        const courseId=selector._id;
+         console.log(id,courseId);
+         const response = await axios.delete("http://localhost:8080/api/v1/delete-section", {
+             data: { id, courseId },
+             withCredentials: true,
+           });
+           console.log(response.data.updatedData);
+         dispatch(addCourseDetails(response.data.updatedData))
+      } catch (error) {
+         console.log("something went wrong while deleting the section from the backend",error.message);
+        }
+ }
+
+
+console.log(section)
   return (
     <div>
-      {selector?.map((ele, index) => (
+      {section?.map((ele, index) => (
         <div key={index} className="border-b border-gray-600">
           <div className="flex items-center justify-between py-2 px-4">
             {/* Left Side */}
@@ -39,7 +65,7 @@ const NestedSection = () => {
             {/* Right Side */}
             <div className="flex items-center gap-4 text-gray-400">
               <MdOutlineModeEdit className="hover:text-blue-400 cursor-pointer text-lg" />
-              <RiDeleteBin6Line className="hover:text-red-500 cursor-pointer text-lg" onClick={() => deleteSection(index)} />
+              <RiDeleteBin6Line className="hover:text-red-500 cursor-pointer text-lg" onClick={() => deleteSection(ele._id)} />
               <div className="border-l border-gray-600 h-5"></div>
             </div>
           </div>

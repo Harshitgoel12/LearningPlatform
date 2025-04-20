@@ -1,4 +1,5 @@
 const Course= require("../Models/Course");
+const Section = require("../Models/Section");
 const cloudinary=require("cloudinary").v2;
 const SectionModel=require("../Models/Section");
 const SubSection =require("../Models/Subsection")
@@ -72,7 +73,66 @@ const addSection= async(req,res)=>{
     }
 }
 
+
+
+
+const deleteSection= async(req,res)=>{
+    try {
+        console.log("yha tk to aa gye ji",req.body)
+        const {id,courseId}=req.body;
+        console.log(id,courseId);
+        if(!id||!courseId){
+            return res.status(401).json({success:false,message:"All the field are required"});
+        }
+        const section= await SectionModel.findById(id);
+        if(!section){
+            return res.status(401).json({success:false,message:"Invalid section"});
+        }
+        const resp=await Course.findById(courseId);
+        if(!resp){
+          return res.status(401).json({success:false,message:"Invalid Course Detail"})
+        }
+        console.log(resp,section);
+        const subsection=section.SubSections;
+
+        await SubSection.deleteMany({
+            _id: { $in: subsection }
+          })
+
+          await SectionModel.deleteOne({_id:id});
+
+         
+  
+          await Course.findByIdAndUpdate(
+         courseId ,              
+            { $pull: { Sections: id } }  
+          )
+
+          const updatedData=await Course.findById(courseId).populate({
+            path:"Sections",
+            populate:{
+                path:"SubSections"
+            }
+          }).exec();
+
+          return res.status(200).json({success:true,message:"Section Deleted Successfully",updatedData})
+         
+
+    } catch (error) {
+        console.log("something went wrong while deleting the section",error.message);
+        return res.status(500).json({success:false,message:"Internal Server error"});
+    }
+}
+
+
+
+
+
+
+
+
 module.exports={
     createCourse,
-    addSection
+    addSection,
+    deleteSection
 }

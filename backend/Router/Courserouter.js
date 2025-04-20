@@ -7,5 +7,6 @@ const upload = require("../middleware/multer");
 
 router.route("/add-course").post(verifyuser,upload.single("Thumbnail"),CourseController.createCourse);
 router.route("/create-section").post(verifyuser,CourseController.addSection);
+router.route("/delete-section").delete(CourseController.deleteSection)
 
 module.exports=router;
