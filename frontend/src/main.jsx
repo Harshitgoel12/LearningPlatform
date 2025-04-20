@@ -17,6 +17,7 @@ import Dashboard from './Profile/Dashboard.jsx'
 import Settings from './Profile/Settings.jsx'
 import AddCourseFirstPage from './Add-course/AddCourseFirstPage.jsx'
 import AddVideoLecture from './Add-course/AddVideoLecture.jsx'
+import AddCourseFirstPageForm from './Add-course/AddCourseFirstPageForm.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -61,12 +62,20 @@ children:[
     element:<Settings/>
   },
   {
-    path:"add-course",
-    element:<AddCourseFirstPage/>
-  },
+    path:"course",
+    element:<AddCourseFirstPage/>,
+    children:[
+     {
+      path:"add-course",
+      element:<AddCourseFirstPageForm/>
+     },
+    
   {
     path:"create-section",
     element:<AddVideoLecture/>
+  }
+    
+  ]
   }
 ]
 }

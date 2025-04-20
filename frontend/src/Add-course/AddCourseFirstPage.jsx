@@ -1,11 +1,12 @@
 import React from 'react'
 import AddCourseFirstPageForm from './AddCourseFirstPageForm'
+import { Outlet } from 'react-router-dom'
 
 function AddCourseFirstPage() {
   return (
     <div className='mt-16 '>
       <div className='flex flex-row gap-10 '>
-       <AddCourseFirstPageForm/>
+       <Outlet/>
         <div className='w-1/2 hidden xl:block h-1/2 me-10 px-3 py-3 bg-gray-900'>
             <h1 className='text-white text-xl font-semibold ms-3'>⚡ Course Upload Tips</h1>
             <ul className='text-gray-300 text-xs px-3 text-start ' >

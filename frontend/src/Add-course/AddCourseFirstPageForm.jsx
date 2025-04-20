@@ -1,11 +1,14 @@
 import React, { useRef, useState } from 'react'
 import { WithContext as ReactTags } from 'react-tag-input';
 import ThumbnailUploader from './ThumbnailUploader';
+import {addCourseDetails} from "../slices/CourseSlice"
 import "../index.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function AddCourseFirstPageForm() {
+  const dispatch=useDispatch();
   const navigate=useNavigate();
   const delimiters = [13, 188];
     const [tags, setTags] = useState([]);
@@ -68,9 +71,9 @@ const handleSubmit=async(e)=>{
       withCredentials:true,
      
     })
-    console.log(response.data.result);
+   dispatch(addCourseDetails(response.data.result));
 
-    navigate("/dashboard/create-section");
+    navigate("/dashboard/course/create-section");
   } catch (error) {
     console.log("something went wrong while adding course details",error.message);
   }

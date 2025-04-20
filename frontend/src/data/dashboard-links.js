@@ -24,7 +24,7 @@ const sidebarLinks = [
   {
     id: 4,
     name: "Add Course",
-    path: "/dashboard/add-course",
+    path: "/dashboard/course/add-course",
     type: "Instructor",
     icon: "VscAdd",
   },
