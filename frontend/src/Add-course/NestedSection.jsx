@@ -5,11 +5,13 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { addCourseDetails, allSection } from '../slices/CourseSlice';
 import axios from 'axios';
-import {deleteSectionHandler} from "../services/CourseHandler"
+import AddLecturePage from './AddLecturePage';
 
 const NestedSection = () => {
+    const [addLecture,setAddLecture]=useState(false);
+    const [sectionId,setSectionId]=useState(null);
   const selector = useSelector((state) => state.Course.course);
-  const section =selector.Sections;
+  const section =selector?.Sections;
   const dispatch = useDispatch();
   const [openSections, setOpenSections] = useState({});
 
@@ -20,16 +22,14 @@ const NestedSection = () => {
     }));
   };
 
-//   const deleteSection=async (id)=>{
-//    try {
-//     const courseId=selector._id;
-//   const resp=await deleteSectionHandler(id,courseId);
-//   dispatch(addCourseDetails(resp));
-//    } catch (error) {
-//     console.log("something went wrong");
-//    }
+//   handle adding lectuers
 
-//   }
+ const addingLectures=(id)=>{
+    setSectionId(id)
+    setAddLecture(!addLecture);
+
+ }
+
 
 const deleteSection=async (id)=>{
     try {
@@ -78,12 +78,15 @@ console.log(section)
                   <div key={i} className="py-1">🎥 {lecture.title}</div>
                 ))
               ) : (
-                <p className="text-yellow-400 font-semibold text-lg mb-3">+ Add Lectures</p>
+                <p className="text-yellow-400 font-semibold text-lg mb-3 cursor-pointer" 
+                onClick={()=>addingLectures(ele._id)}>+ Add Lectures</p>
               )}
             </div>
           )}
         </div>
       ))}
+{console.log(addLecture)}
+      {addLecture&&<AddLecturePage sectionId={sectionId} setAddLecture={setAddLecture}/>}
     </div>
   );
 };

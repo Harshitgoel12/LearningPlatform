@@ -115,7 +115,7 @@ const handleSubmit=async(e)=>{
         </div>
         
         <div>
-            <ThumbnailUploader setImage={setImage}/>
+            <ThumbnailUploader setImage={setImage} type={"image"}/>
         </div>
         <div className='flex flex-col mt-5 ms-5'>
             <label htmlFor="" className='text-white'>Benefits of the Course</label>
