@@ -66,6 +66,7 @@ const handleSubmit=async(e)=>{
     formData.append("Benefits",course.Benefits);
     formData.append("Requirements",Requirements);
     formData.append("Thumbnail",image);
+    console.log(image);
     console.log(course,tags,Requirements,image)
     const response=await axios.post("http://localhost:8080/api/v1/add-course",formData,{
       withCredentials:true,
@@ -115,7 +116,7 @@ const handleSubmit=async(e)=>{
         </div>
         
         <div>
-            <ThumbnailUploader setImage={setImage} type={"image"}/>
+            <ThumbnailUploader setValue={setImage} type={"image"}/>
         </div>
         <div className='flex flex-col mt-5 ms-5'>
             <label htmlFor="" className='text-white'>Benefits of the Course</label>

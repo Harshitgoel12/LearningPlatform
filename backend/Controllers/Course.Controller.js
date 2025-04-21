@@ -8,14 +8,17 @@ const SubSection =require("../Models/Subsection")
 const createCourse= async(req,res)=>{
     try {
         const {Title,Description,Benefits,Requirements,Tags,Category,Price}=req.body;
+        console.log(req.body)
         if(!Title||!Description||!Benefits||!Requirements||!Tags||!Price){
              return res.status(401).json({success:false,message:"All the field are required"});
         }
+        
         const Thumbnail=req.file;
+        console.log(Thumbnail)
         if(!Thumbnail){
             return res.status(401).json({success:false,message:"All the Fileds are required"});
         }
-         console.log(Thumbnail);
+        
         const resp=await cloudinary.uploader.upload(Thumbnail.path);
         console.log(resp);
         
@@ -125,6 +128,56 @@ const deleteSection= async(req,res)=>{
 }
 
 
+const createSubsection =async(req,res)=>{
+    try {
+       
+        const {Title,Description,SectionId,CourseId}=req.body;
+        if(!Title||!Description||!SectionId||!CourseId){
+            return res.status(401).json({success:false,message:"All the field are required"});
+        }
+      
+        const Lecture=req.file;
+        if(!Lecture){
+            return res.status.json({success:false,message:"All field are required"});
+        }
+       
+       const data=await  cloudinary.uploader.upload(Lecture.path, {
+        resource_type: "video", // 🔥 this is important!
+      });
+let subsectiondata;
+       try {
+         subsectiondata=await SubSection.create({
+         Lecture:data.secure_url,Title,Description,
+        })
+       } catch (error) {
+        console.log(error.message)
+       }
+
+    try {
+           const sectin=await SectionModel.findByIdAndUpdate(SectionId,{
+            $push:{
+                SubSections:subsectiondata._id
+            }
+           },{new:true});
+    } catch (error) {
+        console.log(error.message)
+    }
+        const updatedcourse=await Course.findById(CourseId).populate({
+            path:"Sections",
+            populate:{
+                path:"SubSections"
+            }
+          }).exec();
+
+return res.status(200).json({success:true,message:"Subsection created Successfully",updatedcourse});
+       
+
+    } catch (error) {
+        console.log("something went wrong while creating a subsection");
+        return res.status(500).json({success:false,message:"Internal server error"});
+    }
+}
+
 
 
 
@@ -134,5 +187,6 @@ const deleteSection= async(req,res)=>{
 module.exports={
     createCourse,
     addSection,
-    deleteSection
+    deleteSection,
+    createSubsection
 }

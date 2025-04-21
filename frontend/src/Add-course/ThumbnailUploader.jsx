@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { TbPlayerPlayFilled } from "react-icons/tb";
 
-export default function ThumbnailUploader({setImage,type}) {
+export default function ThumbnailUploader({setValue,type}) {
   const [preview, setPreview] = useState(null);
     const [isvideo,setIsvideo]=useState(false);
     const [playVideo,setPlayVideo]=useState(false);
@@ -15,7 +15,7 @@ export default function ThumbnailUploader({setImage,type}) {
     setPreview(URL.createObjectURL(file));
     if(type=="video")
       setIsvideo(true);
-    setImage(acceptedFiles[0]);
+    setValue(acceptedFiles[0]);
     console.log(acceptedFiles[0])
     // Optional: send file to Cloudinary/backend here
   }, []);
@@ -23,7 +23,7 @@ export default function ThumbnailUploader({setImage,type}) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-        [` ${type}/*`]: []
+        [`${type}/*`]: []
     },
     maxFiles: 1
   });
@@ -34,7 +34,7 @@ export default function ThumbnailUploader({setImage,type}) {
   }
 
   return (
-    <div className="text-white space-y-2 flex flex-col items-center">
+    <div className="text-white space-y-2 flex flex-col items-center ">
       <label className="font-semibold text-start w-11/12 mt-2">Course Thumbnail <span className="text-red-500">*</span></label>
       
       <div

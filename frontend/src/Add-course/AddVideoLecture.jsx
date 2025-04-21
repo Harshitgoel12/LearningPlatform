@@ -35,7 +35,7 @@ const AddVideoLecture = () => {
     }
   return (
     <div className='w-11/12'>
-      <form className='w-full bg-gray-800 rounded-lg'>
+      <form className='w-full bg-[#161D29] rounded-lg'>
         <h1 className='font-semibold text-white text-2xl mt-5  ms-3'>Course Builder</h1>
         <div className='ms-5 mt-5'>
             <label htmlFor="" className='text-white '>Section Name</label>
