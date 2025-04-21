@@ -9,5 +9,6 @@ router.route("/add-course").post(verifyuser,upload.single("Thumbnail"),CourseCon
 router.route("/create-section").post(verifyuser,CourseController.addSection);
 router.route("/delete-section").delete(verifyuser,CourseController.deleteSection);
 router.route("/create-subsection").post(verifyuser,upload.single("Lecture"),CourseController.createSubsection);
+router.route("/publishcourse").post(verifyuser,CourseController.PublishCourse)
 
 module.exports=router;

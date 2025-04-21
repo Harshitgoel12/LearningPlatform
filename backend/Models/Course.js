@@ -35,7 +35,11 @@ const CourseSchema = new mongoose.Schema({
     Sections:[{
       type:mongoose.Schema.Types.ObjectId,
       ref:"Section"
-    }]
+    }],
+    state:{
+        type:String,
+        default:"Draft"
+    }
 });
 
 module.exports=mongoose.model("Course",CourseSchema);

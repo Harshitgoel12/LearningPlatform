@@ -42,7 +42,11 @@ const signupSchema = new mongoose.Schema({
     DOB:{
         type:String,
         default:null
-    }
+    },
+    myCourse:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Course"
+    }]
    
 
 })

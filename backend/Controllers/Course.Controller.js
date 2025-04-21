@@ -2,7 +2,8 @@ const Course= require("../Models/Course");
 const Section = require("../Models/Section");
 const cloudinary=require("cloudinary").v2;
 const SectionModel=require("../Models/Section");
-const SubSection =require("../Models/Subsection")
+const SubSection =require("../Models/Subsection");
+const user= require("../Models/Signup.Model")
 
 
 const createCourse= async(req,res)=>{
@@ -25,6 +26,15 @@ const createCourse= async(req,res)=>{
       const result=  await Course.create({
             Title,Tags,Description,Thumbnail:resp.secure_url,Benefits,Requirements,Price,Category
         })
+const id=req.userInfo.id;
+        const mydata= await user.findByIdAndUpdate(id,{
+            $push:{
+                myCourse:result._id
+            }
+         })
+         
+         console.log(mydata);
+           
         return res.status(200).json({success:true,message:"Course Details added Successfully",result});
     } catch (error) {
         console.log("something went wrong while adding course details",error.message);
@@ -138,7 +148,7 @@ const createSubsection =async(req,res)=>{
       
         const Lecture=req.file;
         if(!Lecture){
-            return res.status.json({success:false,message:"All field are required"});
+            return res.status(401).json({success:false,message:"All field are required"});
         }
        
        const data=await  cloudinary.uploader.upload(Lecture.path, {
@@ -173,14 +183,30 @@ return res.status(200).json({success:true,message:"Subsection created Successful
        
 
     } catch (error) {
-        console.log("something went wrong while creating a subsection");
+        console.log("something went wrong while creating a subsection",error.message);
         return res.status(500).json({success:false,message:"Internal server error"});
     }
 }
 
 
 
+const PublishCourse=async(req,res)=>{
+ try {
+    const {checkbox,courseId}=req.body;
+    console.log(checkbox,courseId)
+    if(!checkbox||!courseId){
+        return res.status(401).json({success:false,message:"Please select the option"});
+    }
 
+    const response=await Course.findByIdAndUpdate(courseId,{$set:{state:"Published"}},{new:true});
+          const userdata=await user.findById(req.userInfo.id);
+   return res.status(200).json({success:true,message:"Course Uploaded Successfully",userdata})
+
+ } catch (error) {
+    console.log("something went wrong while publishing the course",error.message);
+    return res.status(500).josn({success:false,message:"Internal Server error"});
+ }
+}
 
 
 
@@ -188,5 +214,6 @@ module.exports={
     createCourse,
     addSection,
     deleteSection,
-    createSubsection
+    createSubsection,
+    PublishCourse
 }

@@ -18,6 +18,8 @@ import Settings from './Profile/Settings.jsx'
 import AddCourseFirstPage from './Add-course/AddCourseFirstPage.jsx'
 import AddVideoLecture from './Add-course/AddVideoLecture.jsx'
 import AddCourseFirstPageForm from './Add-course/AddCourseFirstPageForm.jsx'
+import ConfirmationPage from './Add-course/ConfirmationPage.jsx'
+import Mycourses from './Courses/myCourses.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -69,6 +71,10 @@ children:[
       path:"add-course",
       element:<AddCourseFirstPageForm/>
      },
+     {
+      path:"Confirmation",
+      element:<ConfirmationPage/>
+     },
     
   {
     path:"create-section",
@@ -76,6 +82,10 @@ children:[
   }
     
   ]
+  },
+  {
+    path:"my-courses",
+    element:<Mycourses/>
   }
 ]
 }

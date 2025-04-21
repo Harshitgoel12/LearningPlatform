@@ -6,6 +6,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { addCourseDetails, allSection } from '../slices/CourseSlice';
 import axios from 'axios';
 import AddLecturePage from './AddLecturePage';
+import ViewLecture from './ViewLecture';
 
 const NestedSection = () => {
     const [addLecture,setAddLecture]=useState(false);
@@ -13,7 +14,7 @@ const NestedSection = () => {
     const [viewLecture,setViewLecture]=useState(false);
     const [LectureDetail,setLectureDetail]=useState(null);
   const selector = useSelector((state) => state.Course.course);
-  const section =selector.Sections;
+  const section =selector?.Sections;
   const dispatch = useDispatch();
   const [openSections, setOpenSections] = useState({});
 
@@ -60,7 +61,7 @@ const deleteSection=async (id)=>{
 console.log(section)
   return (
     <div>
-      {section?.map((ele, index) => (
+      {section&&section?.map((ele, index) => (
         <div key={index} className="border-b w-full border-gray-600">
           <div className="flex items-center justify-between w-11/12 ms-7 py-2 px-4">
             {/* Left Side */}
@@ -92,7 +93,7 @@ console.log(section)
                     <>
                   <div className="flex w-11/12  items-center justify-between py-2 ms-4  px-4">
                   <div className="flex items-center gap-2 text-white cursor-pointer ">
-              <p className="font-medium text-gray-300 text-lg">{lecture.Title}</p>
+              <p className="font-medium text-gray-300 text-lg" onClick={()=>handleViewLecture(lecture)}>{lecture.Title}</p>
             </div>
 
                   <div className="flex items-center gap-4  text-gray-400">
@@ -117,8 +118,8 @@ console.log(section)
           )}
         </div>
       ))}
-      {addLecture&&<AddLecturePage sectionId={sectionId} setLectureDetail={setLectureDetail} setAddLecture={setAddLecture}/>}
-      {viewLecture&&<AddLecturePage  sectionId={sectionId}  LectureDetail={LectureDetail}  setAddLecture={setViewLecture}/>}
+      {addLecture&&<AddLecturePage sectionId={sectionId} LectureDetail={LectureDetail} setAddLecture={setAddLecture}/>}
+      {viewLecture&&<ViewLecture   LectureDetail={LectureDetail}  setAddLecture={setViewLecture}/>}
     </div>
   );
 };
