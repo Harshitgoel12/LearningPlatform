@@ -58,9 +58,9 @@ const deleteSection=async (id)=>{
  }
 
 
-console.log(section)
+
   return (
-    <div>
+    <div className='rounded-lg'>
       {section&&section?.map((ele, index) => (
         <div key={index} className="border-b w-full border-gray-600">
           <div className="flex items-center justify-between w-11/12 ms-7 py-2 px-4">

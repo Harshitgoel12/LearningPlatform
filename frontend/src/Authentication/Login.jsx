@@ -36,13 +36,12 @@ function Login() {
           throw new Error(response.data.message);
         }
 
-        //store token on the localstore of the user 
+
        localStorage.setItem("token",JSON.stringify(response.data.token));
        dispatch(setToken(response.data.token));
 
-       const image=response.data.data.image=="NA"?
+       const image=response.data?.data?.image==null?
        `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.data.firstName} ${response.data.data.lastName}`:response.data.data.image;
-
    const ProfileData={
     ...response.data.data,
     image

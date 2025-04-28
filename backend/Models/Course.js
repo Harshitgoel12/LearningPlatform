@@ -39,6 +39,10 @@ const CourseSchema = new mongoose.Schema({
     state:{
         type:String,
         default:"Draft"
+    },
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
     }
 });
 

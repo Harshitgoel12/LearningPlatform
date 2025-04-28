@@ -6,7 +6,7 @@ import Footer from './HomePage/Footer'
 function App() {
 
   return (
-    <div className='min-h-screen bg-gray-100'>
+    <div className='min-h-screen bg-gray-100 relative'>
     <Header/>
     <Outlet/>
     <Footer/>

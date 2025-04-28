@@ -11,4 +11,7 @@ router.route("/delete-section").delete(verifyuser,CourseController.deleteSection
 router.route("/create-subsection").post(verifyuser,upload.single("Lecture"),CourseController.createSubsection);
 router.route("/publishcourse").post(verifyuser,CourseController.PublishCourse)
 
+
+router.route("/getcourse/:category").get(verifyuser,CourseController.getCourses);
+router.route("/findallCourses/:course").get(verifyuser,CourseController.getAllCourses)
 module.exports=router;

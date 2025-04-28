@@ -9,7 +9,8 @@ function Settings() {
     const dispatch=useDispatch();
   
     const userdata= useSelector((state)=>state.Profile.user);
-    const [preview, setPreview] = useState(userdata.image);
+
+    const [preview, setPreview] = useState();
     const [Image,setImage]=useState(userdata.image);
     const [User,setUser]=useState(userdata);
 
@@ -51,7 +52,7 @@ function Settings() {
     console.log("something went wrong while updating the profile of the user ");
    }
       }
-      
+      console.log(Image)
   return (
     <div className='w-screen'>
       <div className='md:w-2/3 w-11/12 flex flex-col items-center'>
@@ -59,7 +60,7 @@ function Settings() {
 
         <div className='flex flex-row mt-10  w-11/12  md:ms-0 ms-5  ps-8 rounded-lg py-10 bg-[#161D29] '>
         <div >
-           <img  src={preview || userdata.image || "https://via.placeholder.com/100"} alt=""  className='h-20 w-20 rounded-full'/> 
+           <img  src={preview || userdata.image} alt=""  className='h-20 w-20 rounded-full'/> 
         </div>
         <div className='flex flex-col ms-5'>
             <h1 className='text-white text-md mb-2 ms-3'>Change Profile Picture</h1>

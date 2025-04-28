@@ -55,6 +55,7 @@ function AddCourseFirstPageForm() {
 const handleSubmit=async(e)=>{
   e.preventDefault();
   try {
+    console.log(course)
     const tagvalue=tags.map((ele)=>ele.text);
     console.log("tag value is",tagvalue);
      const formData= new FormData();
@@ -99,6 +100,14 @@ const handleSubmit=async(e)=>{
             <label htmlFor="" className='text-white'> Course Category</label>
             <select name="Category" value={course.Category} onChange={handleChange} id="" className='text-gray-400 w-11/12 px-2 bg-gray-800     py-3 rounded-lg outline-none focus:border-yellow-200 focus:border-1 shadow-2xl'>
                 <option value="Choose a Category" className=''> Choose a Category</option>
+                <option value="Web Development" className=''> Web Development</option>
+                <option value="Python" className=''> Python</option>
+                <option value="Artificial Intelligence" className=''> Artificial Intelligence</option>
+                <option value="Machine Learning" className=''> Machine Learning</option>
+                <option value="Java Developer" className=''> Java Developer</option>
+                <option value="Ux/UI designer" className=''> Ux/UI designer</option>
+                <option value="DevOps" className=''> DevOps</option>
+                <option value="BlockChain Development">BlockChain Development</option>
             </select>
         </div>
 

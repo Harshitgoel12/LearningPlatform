@@ -20,6 +20,7 @@ import AddVideoLecture from './Add-course/AddVideoLecture.jsx'
 import AddCourseFirstPageForm from './Add-course/AddCourseFirstPageForm.jsx'
 import ConfirmationPage from './Add-course/ConfirmationPage.jsx'
 import Mycourses from './Courses/myCourses.jsx'
+import ShowCourse from './Show_Courses_And_Apply/ShowCourse.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -88,8 +89,18 @@ children:[
     element:<Mycourses/>
   }
 ]
+},
+
+{
+  path:"courses/:coursename",
+  element:<ShowCourse/>
 }
+
+
   ]
+
+
+
 }
 ])
 createRoot(document.getElementById('root')).render(
