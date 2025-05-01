@@ -12,5 +12,6 @@ router.route("/login").post(controller.loginUser);
 router.route("/update-profile").put(upload.single('image'),verifyuser,controller.updateProfile)
 router.route("/logout").delete(verifyuser,controller.Logout)
 
+
 module.exports= router;
 

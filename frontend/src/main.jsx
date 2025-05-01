@@ -21,6 +21,8 @@ import AddCourseFirstPageForm from './Add-course/AddCourseFirstPageForm.jsx'
 import ConfirmationPage from './Add-course/ConfirmationPage.jsx'
 import Mycourses from './Courses/myCourses.jsx'
 import ShowCourse from './Show_Courses_And_Apply/ShowCourse.jsx'
+import ShowDetailsOfCourse from './Show_Courses_And_Apply/ShowDetailsOfCourse.jsx'
+import Cart from './cart/Cart.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -87,6 +89,10 @@ children:[
   {
     path:"my-courses",
     element:<Mycourses/>
+  },
+  {
+    path:"cart",
+    element:<Cart/>
   }
 ]
 },
@@ -94,7 +100,12 @@ children:[
 {
   path:"courses/:coursename",
   element:<ShowCourse/>
-}
+},
+{
+  path:"course/:id",
+  element:<ShowDetailsOfCourse/>
+},
+
 
 
   ]

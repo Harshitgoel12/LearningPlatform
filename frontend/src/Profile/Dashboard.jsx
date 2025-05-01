@@ -219,25 +219,30 @@ function Dashboard() {
 
   const userdata = useSelector((state) => state.Profile.user);
 
-  const filteredLinks = userdata.accountType === "Student"
+  const filteredLinks = userdata?.accountType === "Student"
     ? dashboardlinks.filter(link => link.type === "Student" || link.type === "both")
     : dashboardlinks.filter(link => link.type === "Instructor" || link.type === "both");
 
   return (
-    <div className='w-screen min-h-screen bg-[#000814] gap-28 flex flex-col-reverse md:flex-row'>
+    <div className='w-screen min-h-screen bg-[#000814] gap-12 flex flex-col-reverse md:flex-row'>
       {/* Small screen bottom sidebar */}
-      <div className='w-screen md:hidden flex  justify-around items-center bg-[#161D29] py-2'>
-        {filteredLinks.map((ele, idx) => (
-          <Sidebar key={idx} element={ele} />
-        ))}
-        <Link to="/dashboard/settings">
-          <CiSettings className="text-white md:text-2xl  text-2xl mt-3 " />
-        </Link>
-        <CiLogout className="text-gray-500 md:text-2xl text-2xl  mt-3" onClick={handleLogout} />
-      </div>
+      <div className='fixed bottom-0 left-0 w-full z-50 md:hidden'>
+  <div className='flex justify-around items-center bg-[#161D29] py-2 text-3xl'>
+    {filteredLinks.map((ele, idx) => (
+      <Sidebar key={idx} element={ele} />
+    ))}
+    <Link to="/dashboard/settings">
+      <CiSettings className="text-white text-3xl mt-3" />
+    </Link>
+    <CiLogout 
+      className="text-gray-500 text-3xl mt-3" 
+      onClick={handleLogout} 
+    />
+  </div>
+</div>
 
       {/* Big screen left sidebar */}
-      <div className='hidden md:block w-1/5  min-h-screen bg-[#161D29] pt-10'>
+      <div className='hidden md:block lg:w-1/5 w-1/4  min-h-screen bg-[#161D29] pt-10'>
         {filteredLinks.map((ele, idx) => (
           <Sidebar key={idx} element={ele} />
         ))}

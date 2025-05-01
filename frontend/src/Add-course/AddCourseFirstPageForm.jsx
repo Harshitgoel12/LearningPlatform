@@ -105,7 +105,7 @@ const handleSubmit=async(e)=>{
                 <option value="Artificial Intelligence" className=''> Artificial Intelligence</option>
                 <option value="Machine Learning" className=''> Machine Learning</option>
                 <option value="Java Developer" className=''> Java Developer</option>
-                <option value="Ux/UI designer" className=''> Ux/UI designer</option>
+                <option value="Web designer" className=''> Web designer</option>
                 <option value="DevOps" className=''> DevOps</option>
                 <option value="BlockChain Development">BlockChain Development</option>
             </select>

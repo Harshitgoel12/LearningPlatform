@@ -13,5 +13,6 @@ router.route("/publishcourse").post(verifyuser,CourseController.PublishCourse)
 
 
 router.route("/getcourse/:category").get(verifyuser,CourseController.getCourses);
-router.route("/findallCourses/:course").get(verifyuser,CourseController.getAllCourses)
+router.route("/findallCourses/:course").get(verifyuser,CourseController.getAllCourses);
+router.route("/ParticularCourseDetail/:id").get(verifyuser,CourseController.getSingleCourse)
 module.exports=router;

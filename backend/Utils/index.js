@@ -12,6 +12,6 @@ app.use(cookieParser());
 
 
  app.use("/api/v1",Authrouter);
- app.use("/api/v1",Courserouter)
+ app.use("/api/v1",Courserouter);
 
 module.exports= app;

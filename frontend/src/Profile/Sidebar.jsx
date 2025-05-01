@@ -96,8 +96,8 @@ function Sidebar({ element }) {
 
   return (
     <Link to={element.path}>
-      <div className='flex flex-col items-center md:flex-row md:items-start gap-1 md:gap-3 px-2 md:px-6 mt-7'>
-        <Icon className="text-white text-2xl mb-2 md:text-2xl" />
+      <div className='flex flex-col items-center md:flex-row md:items-start gap-1 md:gap-3 px-2 md:px-6 mt-5'>
+        <Icon className="text-white text-2xl mb-2 md:text-3xl" />
         <h1 className='text-white hidden md:inline text-sm md:text-lg'>{element.name}</h1>
       </div>
     </Link>

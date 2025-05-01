@@ -226,6 +226,7 @@ const getCourses = async(req,res)=>{
 try {
   
     const params= req.params;
+    console.log(params)
     if(!params){
         return res.status(401).json({message:"No course Find Like this ",success:false})
     }
@@ -257,6 +258,27 @@ const getAllCourses= async(req,res)=>{
 }
 
 
+
+const getSingleCourse= async(req,res)=>{
+    try {
+        const params= req.params;
+        const id=params.id;
+        console.log(id);
+                const response= await Course.findById(id).populate("user").populate({
+                    path:"Sections" ,
+                    populate:{
+                        path:"SubSections",
+                    }
+                }).exec();
+                return res.status(200).json({success:true,message:"Course Data fetch successfully",response})
+
+    } catch (error) {s
+        console.log("something went wrong while fetching the course details ",error.message);
+        return res.status(500).json({success:false,message:"Internal server error"});
+    }
+}
+
+
 module.exports={
     createCourse,
     addSection,
@@ -264,5 +286,6 @@ module.exports={
     createSubsection,
     PublishCourse,
     getCourses,
-    getAllCourses
+    getAllCourses,
+    getSingleCourse
 }
