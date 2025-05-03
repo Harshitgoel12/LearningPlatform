@@ -4,6 +4,8 @@ import './index.css'
 import { createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router-dom'
 import App from './App.jsx';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Home from './HomePage/Home.jsx';
 import Signup from './Authentication/signup.jsx'
 import Aboutus from './HomePage/Aboutus.jsx'
@@ -23,6 +25,7 @@ import Mycourses from './Courses/myCourses.jsx'
 import ShowCourse from './Show_Courses_And_Apply/ShowCourse.jsx'
 import ShowDetailsOfCourse from './Show_Courses_And_Apply/ShowDetailsOfCourse.jsx'
 import Cart from './cart/Cart.jsx'
+import EnrolledCourse from './Courses/EnrolledCourse.jsx'
 
 const AppRouter= createBrowserRouter([
   {
@@ -93,6 +96,10 @@ children:[
   {
     path:"cart",
     element:<Cart/>
+  },
+  {
+    path:"enrolled-course",
+    element:<EnrolledCourse/>
   }
 ]
 },

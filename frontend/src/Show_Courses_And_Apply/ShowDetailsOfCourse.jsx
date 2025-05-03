@@ -41,9 +41,6 @@ const ShowDetailsOfCourse = () => {
 
 
 
-
-
-
     const fetchCourseDetail= async()=>{
         console.log("course details")
        try {
@@ -111,7 +108,7 @@ const ShowDetailsOfCourse = () => {
           <div className='w-11/12 mb-8  flex flex-col items-center  mt-3'>
             <img src={courseData.Thumbnail} alt=""  className='rounded-2xl mt-4 ms-9 h-68 w-11/12 '/>
             <p className='text-white font-bold text-3xl ms-12 mt-4  text-start w-full'>₹{courseData.Price}</p>
-            <button className='bg-yellow-400 text-black px-2 py-2.5 text-md mt-4 font-semibold w-11/12 rounded-lg'>Buy Now</button>
+            <button className='bg-yellow-400 text-black px-2 py-2.5 text-md mt-4 font-semibold w-11/12 rounded-lg' >Buy Now</button>
             {!AllreadyAdded&&<button className='bg-gray-900 text-white px-3 py-2.5 text-md mt-3 font-semibold w-11/12 rounded-lg' onClick={handleAddToCart}
             >Add To Cart</button>}
             {AllreadyAdded&&<button className='bg-gray-900 text-white px-3 py-2.5 text-md mt-3 font-semibold w-11/12 rounded-lg' onClick={handleGOTOCART}
